@@ -1,0 +1,19 @@
+<!-- index.html -->
+<input type="file" id="fileInput">
+<button onclick="upload()">Upload</button>
+
+<script>
+async function upload() {
+  const file = document.getElementById('fileInput').files[0];
+  const formData = new FormData();
+  formData.append('file', file);
+
+  const response = await fetch('https://your-replit-backend.repl.co/upload', {
+    method: 'POST',
+    body: formData
+  });
+
+  const result = await response.json();
+  alert(`File stored! Download URL: ${result.url}`);
+}
+</script>
